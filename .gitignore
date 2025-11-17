@@ -26,4 +26,5 @@ output.json
 cmake-build-debug/
 cmake-build-release/
 .cache/
+app/google-services.json
 
