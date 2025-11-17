@@ -14,7 +14,7 @@ class NewsRepository {
         try {
             Log.d("NEWS_REPO", "Fetching news...")
 
-            val response = RetrofitInstance.api.getTopHeadlines("pub_9317a15901154e60b27e0ce17528429c")
+            val response = RetrofitInstance.api.getTopHeadlines("")
 
             Log.d("NEWS_RESPONSE", response.toString())
 

@@ -1,9 +1,16 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+fun String.escapeForBuildConfig(): String {
+    return "\"" + this.replace("\"", "\\\"") + "\""
+}
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
 }
+val localProps = gradleLocalProperties(rootDir, providers)
+val apiKey: String = localProps.getProperty("MY_API_KEY") ?: ""
 
 android {
     namespace = "com.example.notificationsproject"
@@ -17,6 +24,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "MY_API_KEY", apiKey.escapeForBuildConfig())
     }
 
     buildTypes {
@@ -37,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig=true
     }
 }
 
